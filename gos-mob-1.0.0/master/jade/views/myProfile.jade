@@ -1,0 +1,94 @@
+h3 Profile Saya
+
+// START panel
+
+// START chart
+.row(ng-controller="MyProfileController")
+      .col-lg-12
+        // START info Booker
+        #panelChart9.panel.panel-default
+          .panel-heading
+            paneltool(tool-expand)
+            .panel-title Informasi Booker <hr>
+          .panel-wrapper(expand="panelChart9")
+            .panel-body
+             .table-responsive 
+              table.table.table-hover(width='100%',ng-repeat='booker in Profile')
+                tr
+                   td(width='25%') Tour Code GOS Member
+                   td(width='5') :
+                   td  {{booker.Profile.username}}
+                tr
+                tr
+                   td(width='25%') Nama Lengkap
+                   td(width='5') :
+                   td {{booker.Profile.nama}}
+                tr
+                tr
+                   td(width='25%') Email
+                   td(width='5') :
+                   td {{booker.Profile.email}}
+                tr
+                tr
+                   td(width='25%') Telpon
+                   td(width='5') :
+                   td {{booker.Profile.telp}}
+                tr
+                tr
+                   td(width='25%') Telpon Seluler
+                   td(width='5') :
+                   td {{booker.Profile.hp}}
+                tr
+                tr
+                   td(width='25%') Alamat
+                   td(width='5') :
+                   td {{booker.Profile.alamat}}
+                
+
+        // END info Booker
+
+        // START info login
+        #panelChart9.panel.panel-default(ng-controller="FlotChartController")
+          .panel-heading
+            paneltool(tool-collapse)
+            .panel-title Informasi Login <hr>
+          .panel-wrapper(collapse="panelChart9")
+            .panel-body
+             .table-responsive 
+              table.table.table-hover(width='100%',ng-repeat='user in Profile')
+                tr
+                   td(width='25%') Username
+                   td(width='5') :
+                   td {{user.Login.username}}
+                tr
+                tr
+                   td(width='25%') Password expired on
+                   td(width='5') :
+                   td {{user.Login.expired}}
+                tr
+                tr
+                   td(width='25%') Status
+                   td(width='5') :
+                   td {{user.Login.status}}
+                tr
+                tr
+                   td(width='25%') Privileges
+                   td(width='5') :
+                   td {{user.Login.privilegas}}
+                tr
+                tr
+                   td(width='25%') Login Terakhir
+                   td(width='5') :
+                   td {{ Profile.date | date:'yyyy-MM-dd HH:mm:ss '}} IP-Address {{user.Login.ip}}
+                tr
+                tr
+                   td(width='25%') Aktifitas Terakhir
+                   td(width='5') :
+                   td {{ Profile.date | date:'yyyy-MM-dd HH:mm:ss '}}
+                tr
+              center
+               a(href='#/app/ubahPassword')
+                input.btn.btn-info(name='btn_ubah_pwd',value='Ubah Password')
+
+        // END info login
+    // END chart

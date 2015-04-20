@@ -1,0 +1,69 @@
+<h3>Booking A Flight</h3>
+<!-- START panel-->
+<div class="panel panel-default">
+   <div class="panel-heading"></div>
+   <div class="panel-body">
+      <form action="" method="POST" form-wizard="" validate-form="">
+         <div ng-controller="bookingFlightController_pax" class="form-wizard wizard-horizontal">
+            <!-- START wizard steps indicator-->
+            <ol class="row">
+               <li ng-click="step1()" class="col-sm-3">
+                  <h4>Penerbangan</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3 active">
+                  <h4>Penumpang</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Pembayaran</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Konfirmasi</h4>
+                  <small class="text-muted"></small>
+               </li>
+            </ol>
+            <!-- END wizard steps indicator-->
+            <div class="col-md-12">
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <strong>Nama Penumpang Dewasa</strong>
+                  </div>
+                  <div class="panel-body">
+                     <!--inputan nama penumbpang-->
+                     <div class="col-sm-1">
+                        <div class="col-md-1">No</div>
+                        <input type="text" class="col-sm-1 form-control" />
+                     </div>
+                     <div class="col-md-2">
+                        <div class="col-md-1">Title*</div>
+                        <input type="text" class="col-md-1 form-control" />
+                     </div>
+                     <div class="col-sm-3">
+                        <div class="col-md-2">Nama&nbsp;Depan*</div>
+                        <input type="text" size="10" class="col-md-1 form-control" />
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="col-md-2">Nama&nbsp;Tengah</div>
+                        <input type="text" size="10" class="col-md-1 form-control" />
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="col-md-2">Nama&nbsp;Belakang</div>
+                        <input type="text" size="10" class="col-md-1 form-control" />
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="col-md-2">Nomor&nbsp;GFF</div>
+                        <input type="text" size="10" class="col-md-1 form-control" />
+                     </div>
+                     <!--inputan tanggal lahir/penumpang-->
+                     <div class="col-md-6">&nbsp;</div>
+                     <div class="col-md-6 text-right">Tgl bln Tahun</div>
+                  </div>
+                  <div class="panel-footer"></div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>

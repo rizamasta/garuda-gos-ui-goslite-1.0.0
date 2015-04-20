@@ -1,0 +1,154 @@
+<h3>Booking A Flight</h3>
+<!-- START panel-->
+<div class="panel panel-default">
+   <div class="panel-heading"></div>
+   <div class="panel-body">
+      <form action="#/gos/bookingFlight" method="POST" form-wizard="" validate-form="">
+         <div ng-controller="getFereController" class="form-wizard wizard-horizontal">
+            <!-- START wizard steps indicator-->
+            <ol class="row">
+               <li class="col-sm-3 active">
+                  <h4>Penerbangan</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Penumpang</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Pembayaran</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Konfirmasi</h4>
+                  <small class="text-muted"></small>
+               </li>
+            </ol>
+            <!-- END wizard steps indicator-->
+            <!-- Step-->
+            <div id="step1">
+               <div class="col-md-12">
+                  <!--START PANEL-->
+                  <div id="panelFare" class="panel panel-info">
+                     <div class="panel-heading">
+                        <strong>KEBERANGKATAN
+                           <br>GA{{SelectionDep.3}} {{SelectionDep.1 | limitTo:3}}-{{SelectionDep.1 | limitTo:-3}}</strong>
+                        <br>Berangkat : {{SelectionDep.5|limitTo:2}}-{{SelectionDep.5|limitTo:-5|limitTo:3}}-{{SelectionDep.8|limitTo:4}} JAM {{SelectionDep.9 | limitTo:5}}
+                        <br>Kelas Layanan : {{serviceClass}}({{SelectionDep.4}})</div>
+                     <div class="panel-body">
+                        <!--panel Penumpang-->
+                        <div class="col-md-4">
+                           <div class="panel panel-default">
+                              <div class="panel-heading">
+                                 <strong>Penumpang:</strong>
+                              </div>
+                              <div class="panel-body">
+                                 <P>{{fareAdult}}{{" orang Dewasa"}}</P>
+                                 <p ng-show="showChild">{{fareChild}}{{" orang Anak-Anak"}}</p>
+                                 <p ng-show="showInfant">{{fareInfant}}{{" orang Bayi"}}</p>
+                                 <p>
+                                    <hr>
+                                    <strong>
+                                       <p class="text-left">Total Harga : {{resultFare.paxpay | currency:""}} {{resultFare.coc}}</p>
+                                    </strong>
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        <!--panel Ticket Fare-->
+                        <div class="col-md-8">
+                           <div class="panel panel-default">
+                              <div class="panel-heading">
+                                 <legend></legend>
+                                 <strong>TICKET FARE</strong>
+                              </div>
+                              <div class="panel-body">
+                                 <div ng-class="col-md-12">
+                                    <div class="col-md-8">Exchange Rate</div>
+                                    <div class="col-md-4 text-right">{{resultFare.coc}} 1 = {{resultFare.loc}} {{resultFare.bsr}}</div>
+                                    <div class="col-md-8">Harga Dasar Dewasa</div>
+                                    <div class="col-md-4 text-right">{{resultFare.bfareade | currency:"":0}}</div>
+                                    <div ng-repeat="taxa in taxad" ng-class="col-md-12">
+                                       <div class="col-md-8">{{taxa.id}}</div>
+                                       <div class="col-md-4 text-right">{{taxa.value | currency:""}}</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <legend></legend>
+                                    </div>
+                                    <div class="col-md-8">Harga Dewasa</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpayade | currency:""}}</div>
+                                    <div class="col-md-8">Jumlah Pax Dewasa</div>
+                                    <div class="col-md-4 text-right">{{fareAdult}} X</div>
+                                    <div class="col-md-8">Total Harga Dewasa</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpayad_all | currency:""}}
+                                       <br>
+                                       <br>
+                                    </div>
+                                 </div>
+                                 <div ng-class="col-md-12" ng-show="showChild">
+                                    <div class="col-md-8">Harga Dasar Anak</div>
+                                    <div class="col-md-4 text-right">{{resultFare.bfareche | currency:"":0}}</div>
+                                    <div ng-repeat="taxc in taxch" ng-class="col-md-12">
+                                       <div class="col-md-8">{{taxc.id}}</div>
+                                       <div class="col-md-4 text-right">{{taxc.value | currency:""}}</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <legend></legend>
+                                    </div>
+                                    <div class="col-md-8">Harga Anak</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpayche | currency:""}}</div>
+                                    <div class="col-md-8">Jumlah Pax Anak</div>
+                                    <div class="col-md-4 text-right">{{fareChild}} X</div>
+                                    <div class="col-md-8">Total Harga Anak</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpaych_all | currency:""}}
+                                       <br>
+                                       <br>
+                                    </div>
+                                 </div>
+                                 <div ng-class="col-md-12" ng-show="showInfant">
+                                    <div class="col-md-8">Harga Dasar Bayi</div>
+                                    <div class="col-md-4 text-right">{{resultFare.bfarei | currency:"":0}}</div>
+                                    <div ng-repeat="taxi in taxin" ng-class="col-md-12">
+                                       <div class="col-md-8">{{taxi.id}}</div>
+                                       <div class="col-md-4 text-right">{{taxi.value | currency:""}}</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <legend></legend>
+                                    </div>
+                                    <div class="col-md-8">Harga Bayi</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpayine | currency:""}}</div>
+                                    <div class="col-md-8">Jumlah Pax Bayi</div>
+                                    <div class="col-md-4 text-right">{{fareInfant}} X</div>
+                                    <div class="col-md-8">Total Harga Bayi</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpayin_all | currency:""}}
+                                       <br>
+                                       <br>
+                                    </div>
+                                 </div>
+                                 <div ng-class="col-md-12">
+                                    <div class="col-md-8">Total Bayar Pax</div>
+                                    <div class="col-md-4 text-right">{{resultFare.paxpay | currency:""}}</div>
+                                    <div class="col-md-8">Komisi Agen</div>
+                                    <div class="col-md-4 text-right">{{resultFare.agentkom | currency:""}}</div>
+                                    <div class="col-md-8">PPH</div>
+                                    <div class="col-md-4 text-right">{{resultFare.agentpph | currency:""}}</div>
+                                    <div class="col-md-8">Total Bayar Agen</div>
+                                    <div class="col-md-4 text-right">{{resultFare.agentpay | currency:""}}</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="panel-footer">
+                        <p class="text-center">
+                           <input type="button" value="Sebelumnya" ng-click="sebelumnya()" class="btn btn" />
+                           <input type="submit" value="Selanjutnya" ng-click="getFare()" class="btn btn-info" />
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>

@@ -1,0 +1,136 @@
+<h3>Booking A Flight</h3>
+<!-- START panel-->
+<div class="panel panel-default">
+   <div class="panel-heading"></div>
+   <div class="panel-body">
+      <form action="#/gos/bookFlightAvailableFare" method="POST" form-wizard="" validate-form="">
+         <div ng-controller="availabilityController" class="form-wizard wizard-horizontal">
+            <!-- START wizard steps indicator-->
+            <ol class="row">
+               <li class="col-sm-3 active">
+                  <h4>Penerbangan</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Penumpang</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Pembayaran</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Konfirmasi</h4>
+                  <small class="text-muted"></small>
+               </li>
+            </ol>
+            <!-- END wizard steps indicator-->
+            <!-- START Wizard Step inputs Penerbangan(step 1)-->
+            <div id="step1">
+               <fieldset>
+                  <legend>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <table width="100%" align="center">
+                              <tr class="widget bg-primary mt0 text-center">
+                                 <td>Outbound -
+                                    <small>{{dateDeparture; outBond}}</small>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <div class="table-responsive"></div>
+                                    <table width="100%" border="0" class="table">
+                                       <tr class="widget bg-primary mt0 text-center">
+                                          <td width="5%">No.</td>
+                                          <td Width="14%">Flight</td>
+                                          <td Width="13%">From</td>
+                                          <td Width="13%">To</td>
+                                          <td width="60%">Class Available</td>
+                                       </tr>
+                                    </table>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <div class="table-responsive"></div>
+                                    <table width="100%" border="0" class="table table-striped">
+                                       <tr>
+                                          <td width="5%"></td>
+                                          <td width="14%"></td>
+                                          <td width="13%"></td>
+                                          <td width="13%"></td>
+                                          <td width="60%">
+                                             <div class="col-sm-1">H</div>
+                                             <div class="col-sm-1">S</div>
+                                             <div class="col-sm-1">V</div>
+                                             <div class="col-sm-1">L</div>
+                                             <div class="col-sm-1">T</div>
+                                             <div class="col-sm-1">Q</div>
+                                             <div class="col-sm-1">N</div>
+                                             <div class="col-sm-1">K</div>
+                                             <div class="col-sm-1">M</div>
+                                             <div class="col-sm-1">B</div>
+                                             <div class="col-sm-1">Y</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td>
+                                             <div class="col-md-2">&larr;</div>
+                                             <div class="col-md-4">
+                                                <small>More Affrodable</small>
+                                             </div>
+                                             <div class="col-md-4">
+                                                <small>More Flexible</small>
+                                             </div>
+                                             <div class="col-md-2">&rarr;</div>
+                                          </td>
+                                       </tr>
+                                       <tr ng-repeat="value in SatuSatu" class="text-center small">
+                                          <td class="lead small">{{$index+1}}</td>
+                                          <td class="lead small">GA{{value.3}}</td>
+                                          <td class="lead small">{{value.1 | limitTo:3}}
+                                             <br>{{value.8 | limitTo:5}}</td>
+                                          <td class="lead small">{{value.1 | limitTo:-3}}
+                                             <br>{{value.10 | limitTo:5}}</td>
+                                          <td class="lead small">
+                                             <div ng-repeat="cs in value.4" class="col-sm-1 lead">{{cs.seat;}}
+                                                <input type="radio" name="seat" ng-show="cs.value" ng-required="true" ng-value="value" ng-click="radioClick(value[4][$index],value)" />
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </table>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>{{value}}</td>
+                              </tr>
+                           </table>
+                           <table width="100%" data-parsley-group="step2" align="center" border="0" ng-show="returnWay">
+                              <tr class="widget bg-primary mt0 text-center">
+                                 <td>Returnbound -
+                                    <small>{{dateReturn;returnBond}}</small>
+                                 </td>
+                              </tr>
+                           </table>
+                           <table width="100%">
+                              <tr align="right">
+                                 <td>
+                                    <input type="button" value="Sebelumnya" ng-click="sebelumnya()" class="btn btn" />
+                                    <input type="submit" value="Selanjutnya" ng-click="getFare()" class="btn btn-info" />
+                                 </td>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                  </legend>
+               </fieldset>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>

@@ -1,0 +1,97 @@
+h3 Booking A Flight
+
+// START panel
+.panel.panel-default
+  .panel-heading
+  .panel-body
+    form(action='#/gos/bookFlightAvailable', method='POST', validate-form="")
+      .form-wizard.wizard-horizontal
+        // START wizard steps indicator
+        ol.row
+          li.col-sm-3.active(ng-href="#")
+            h4 Penerbangan
+            small.text-muted
+          li.col-sm-3
+            h4 Penumpang
+            small.text-muted
+          li.col-sm-3
+            h4 Pembayaran
+            small.text-muted
+          li.col-sm-3
+            h4 Konfirmasi
+            small.text-muted
+        // END wizard steps indicator
+
+        // START Wizard Step inputs Penerbangan(step 1)
+        div#step1
+         .row
+         .col-md-2
+         .col-md-8
+           table.typeahead-ctrl(width="100%", ng-controller='bookFlightController as booking')
+            tr
+             td(height="40")
+              legend Trip Plan
+              small.error
+               |{{errorNoData;errorNotComplete}}
+            tr
+             td(height="40")
+              label Origin
+            tr
+             td(height="40")
+              .controls
+                    input.form-control(autocomplete="off", type='text', placeholder='Select Your Origin',ng-model='selectedAirportsOrigin',name='inputOrigin', required, typeahead='cityName as airports.cityName+" ( "+airports.cityCode+" ), "+airports.name+"( "+airports.code+" ), "+airports.countryName+"( "+airports.countryCode+" )" for airports in airports_data.airports | filter:$viewValue| limitTo:8', typeahead-editable="false", typeahead-on-select="onSelectOrigin($item,$model,$label)" )
+            tr
+             td(height="40")
+              label Destination
+            tr
+             td(height="40")
+              .controls
+                    input.form-control(autocomplete="off", type='text', name='inputDestination', ng-model='selectedAirportsDest', placeholder='Your Destination', required, typeahead='cityName as airportsDest.cityName+" ( "+airportsDest.cityCode+" ), "+airportsDest.name+"( "+airportsDest.code+" ), "+airportsDest.countryName+"( "+airportsDest.countryCode+" )" for airportsDest in airports_data.airportsDest | filter:$viewValue| limitTo:50', typeahead-editable="false  ", typeahead-on-select="onSelectDest($item,$model,$label)")
+            tr
+             td(height="40")
+              br
+              legend Trip Type
+              .controls
+                radio
+                    input#optionsRadios1(type='radio', value='o',  ng-required="true",ng-model='tripType', ng-change="clickTrip()")
+                    | &nbsp;&nbsp;One Way &nbsp;&nbsp;
+                    input#optionsRadios1(type='radio', value='r',ng-required="true",ng-model='tripType', ng-change="clickTrip()")
+                    | &nbsp;&nbsp;Return &nbsp;&nbsp;
+            tr
+              td(height="40")
+               .col-md-6
+                label Departure Date
+               .col-md-6
+                label(ng-show='returnWay') Return Date
+            tr
+              td
+               .col-md-6
+                   input.form-control(type='text', placeholder='Departure Date', datepicker-popup='{{format}}', ng-model='dateDeparture', is-open='opened', min-date='minDate', datepicker-options='dateOptions', close-text='Close', ng-focus='open($event)',  show-button-bar="false")
+               .col-md-6
+                   input.form-control(type='text', placeholder='Return Date', datepicker-popup='{{format}}', ng-model='dateReturn', is-open='opened2', min-date='dateDeparture', datepicker-options='dateOptions', close-text='Close', ng-focus='open2($event)',  show-button-bar="false",ng-show='returnWay')
+            tr
+             td
+              legend &nbsp;
+            tr
+             td
+              label Class
+               select.form-control.col-md-2(ng-model="service", ng-options="services.name for services in services", ng-required='true')
+            tr
+             td
+              label Passenger:
+            tr
+             td
+              label Adult
+               select.form-control(name='adult',ng-model='Adult',ng-options='adult.value for adult in Adults | limitTo:limitAdult', ng-change="onChangeAdult()")
+            tr
+             td
+              label Child
+               select.form-control(name='child',ng-model='Child',ng-options='child.value for child in Childs | limitTo:limitChild',ng-change="onChangeChild()")
+            tr
+             td
+              label Infant
+               select.form-control(name='infant', ng-model='Infant', ng-options='infant.value for infant in Infants | limitTo:limitInfant', ng-onchange='onChangeInfant()')
+            tr
+             td(align='right')
+              input.btn.btn-default(type="button", value="Sebelumnya", ng-click="sebelumnya()")
+              input.btn.btn-info(type="submit", value="Selanjutnya", ng-click="setValueForAvailbility()")

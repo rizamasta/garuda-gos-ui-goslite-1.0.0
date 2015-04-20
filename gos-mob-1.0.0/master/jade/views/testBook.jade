@@ -1,0 +1,14 @@
+html
+ title Coba ambil data
+ .body(ng-controller='bookFlightController')
+  table.table
+   tr(bgcolor='white')
+    td Kode
+    td Nama Bandara
+    td Nama Kota
+    td Negara
+   tr(ng-repeat='Object in airports_data.airports')
+    td {{Object.code}}
+    td {{Object.name}}
+    td {{Object.cityName}}
+    td {{Object.countryName}}

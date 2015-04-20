@@ -1,0 +1,84 @@
+<h3>Profile GOS Member</h3>
+<div class="row">
+   <div class="col-md-12">
+      <!-- START panel-->
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title"></h3>
+         </div>
+         <div class="panel-body">
+            <div class="table-responsive">
+               <table width="70%" ng-repeat="gos in GOS" class="table">
+                  <tr>
+                     <td width="45%">Tourcode GOS Member</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.username}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Nama GOS Member</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.nama}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Alamat</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.alamat}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Penanggung Jawab</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.pj}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Email</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.email}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Telp.</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.telp}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Handphone.</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.hp}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Fax</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.fax}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Komisi</td>
+                     <td width="5%">:</td>
+                     <td width="50%">Domestik {{gos.Profile.komisi.domestik}}
+                        <br>Internasional {{gos.Profile.komisi.internasional}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Target Penjualan</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.target}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Tanggal Daftar</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.daftar}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">Tanggal Berlaku</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.berlaku}}</td>
+                  </tr>
+                  <tr>
+                     <td width="45%">NPWP</td>
+                     <td width="5%">:</td>
+                     <td width="50%">{{gos.Profile.npwp}}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+      <!-- END panel-->
+   </div>
+</div>

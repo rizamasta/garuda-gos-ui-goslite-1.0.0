@@ -1,0 +1,103 @@
+h3 Booking A Flight
+
+// START panel
+.panel.panel-default
+  .panel-heading
+  .panel-body
+    form(action='#/gos/bookFlightAvailableFare', method='POST', form-wizard="", validate-form="")
+      .form-wizard.wizard-horizontal(ng-controller='availabilityController')
+        // START wizard steps indicator
+        ol.row
+          li.col-sm-3.active
+            h4 Penerbangan
+            small.text-muted
+          li.col-sm-3
+            h4 Penumpang
+            small.text-muted
+          li.col-sm-3
+            h4 Pembayaran
+            small.text-muted
+          li.col-sm-3
+            h4 Konfirmasi
+            small.text-muted
+        // END wizard steps indicator
+
+        // START Wizard Step inputs Penerbangan(step 1)
+        div#step1
+          fieldset
+           legend
+            .row
+              .col-md-12
+               table(width="100%", align="center")
+                tr.widget.bg-primary.mt0.text-center
+                 td
+                  |Outbound -
+                  small {{dateDeparture; outBond}}
+                tr
+                 td
+                  .table-responsive
+                  table.table(width="100%", border="0")
+                   tr.widget.bg-primary.mt0.text-center
+                    td(width="5%") No.
+                    td(Width="14%") Flight
+                    td(Width="13%") From
+                    td(Width="13%") To
+                    td(width="60%") Class Available
+                tr
+                 td
+                  .table-responsive
+                  table.table.table-striped(width="100%", border="0")
+                   tr
+                    td(width="5%")
+                    td(width="14%")
+                    td(width="13%")
+                    td(width="13%")
+                    td(width="60%")
+                     .col-sm-1 H
+                     .col-sm-1 S
+                     .col-sm-1 V
+                     .col-sm-1 L
+                     .col-sm-1 T
+                     .col-sm-1 Q
+                     .col-sm-1 N
+                     .col-sm-1 K
+                     .col-sm-1 M
+                     .col-sm-1 B
+                     .col-sm-1 Y
+                   tr
+                    td
+                    td
+                    td
+                    td
+                    td
+                     .col-md-2
+                      | &larr;
+                     .col-md-4
+                      small More Affrodable
+                     .col-md-4
+                      small More Flexible
+                     .col-md-2
+                      | &rarr;
+                   tr.text-center.small(ng-repeat="value in SatuSatu")
+                    td.lead.small {{$index+1}}
+                    td.lead.small GA{{value.3}}
+                    td.lead.small {{value.1 | limitTo:3}}
+                      |<br> {{value.8 | limitTo:5}}
+                    td.lead.small {{value.1 | limitTo:-3}}
+                      |<br> {{value.10 | limitTo:5}}
+                    td.lead.small
+                     .col-sm-1.lead(ng-repeat='cs in value.4')|{{cs.seat;}}
+                      input(type="radio",name="seat", ng-show="cs.value",ng-required="true",ng-value="value",ng-click="radioClick(value[4][$index],value)")
+                tr
+                 td
+                    |{{value}}
+               table(width="100%", data-parsley-group="step2", align="center" border='0',ng-show='returnWay')
+                   tr.widget.bg-primary.mt0.text-center
+                        td
+                         |Returnbound -
+                         small {{dateReturn;returnBond}}
+               table(width='100%')
+                tr(align='right')
+                 td
+                  input.btn.btn(type="button", value="Sebelumnya", ng-click="sebelumnya()")
+                  input.btn.btn-info(type="submit", value="Selanjutnya", ng-click="getFare()")

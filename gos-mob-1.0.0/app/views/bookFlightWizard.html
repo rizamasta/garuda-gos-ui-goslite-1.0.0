@@ -1,0 +1,149 @@
+<h3>Booking A Flight</h3>
+<!-- START panel-->
+<div class="panel panel-default">
+   <div class="panel-heading"></div>
+   <div class="panel-body">
+      <form action="#/gos/bookFlightAvailable" method="POST" validate-form="">
+         <div class="form-wizard wizard-horizontal">
+            <!-- START wizard steps indicator-->
+            <ol class="row">
+               <li ng-href="#" class="col-sm-3 active">
+                  <h4>Penerbangan</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Penumpang</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Pembayaran</h4>
+                  <small class="text-muted"></small>
+               </li>
+               <li class="col-sm-3">
+                  <h4>Konfirmasi</h4>
+                  <small class="text-muted"></small>
+               </li>
+            </ol>
+            <!-- END wizard steps indicator-->
+            <!-- START Wizard Step inputs Penerbangan(step 1)-->
+            <div id="step1">
+               <div class="row"></div>
+               <div class="col-md-2"></div>
+               <div class="col-md-8">
+                  <table width="100%" ng-controller="bookFlightController as booking" class="typeahead-ctrl">
+                     <tr>
+                        <td height="40">
+                           <legend>Trip Plan</legend>
+                           <small class="error">{{errorNoData;errorNotComplete}}</small>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td height="40">
+                           <label>Origin</label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td height="40">
+                           <div class="controls">
+                              <input autocomplete="off" type="text" placeholder="Select Your Origin" ng-model="selectedAirportsOrigin" name="inputOrigin" required="required" typeahead="cityName as airports.cityName+&quot; ( &quot;+airports.cityCode+&quot; ), &quot;+airports.name+&quot;( &quot;+airports.code+&quot; ), &quot;+airports.countryName+&quot;( &quot;+airports.countryCode+&quot; )&quot; for airports in airports_data.airports | filter:$viewValue| limitTo:8"
+                              typeahead-editable="false" typeahead-on-select="onSelectOrigin($item,$model,$label)" class="form-control" />
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td height="40">
+                           <label>Destination</label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td height="40">
+                           <div class="controls">
+                              <input autocomplete="off" type="text" name="inputDestination" ng-model="selectedAirportsDest" placeholder="Your Destination" required="required" typeahead="cityName as airportsDest.cityName+&quot; ( &quot;+airportsDest.cityCode+&quot; ), &quot;+airportsDest.name+&quot;( &quot;+airportsDest.code+&quot; ), &quot;+airportsDest.countryName+&quot;( &quot;+airportsDest.countryCode+&quot; )&quot; for airportsDest in airports_data.airportsDest | filter:$viewValue| limitTo:50"
+                              typeahead-editable="false  " typeahead-on-select="onSelectDest($item,$model,$label)" class="form-control" />
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td height="40">
+                           <br/>
+                           <legend>Trip Type</legend>
+                           <div class="controls">
+                              <radio>
+                                 <input id="optionsRadios1" type="radio" value="o" ng-required="true" ng-model="tripType" ng-change="clickTrip()" />&nbsp;&nbsp;One Way &nbsp;&nbsp;
+                                 <input id="optionsRadios1" type="radio" value="r" ng-required="true" ng-model="tripType" ng-change="clickTrip()" />&nbsp;&nbsp;Return &nbsp;&nbsp;</radio>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td height="40">
+                           <div class="col-md-6">
+                              <label>Departure Date</label>
+                           </div>
+                           <div class="col-md-6">
+                              <label ng-show="returnWay">Return Date</label>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="col-md-6">
+                              <input type="text" placeholder="Departure Date" datepicker-popup="{{format}}" ng-model="dateDeparture" is-open="opened" min-date="minDate" datepicker-options="dateOptions" close-text="Close" ng-focus="open($event)" show-button-bar="false"
+                              class="form-control" />
+                           </div>
+                           <div class="col-md-6">
+                              <input type="text" placeholder="Return Date" datepicker-popup="{{format}}" ng-model="dateReturn" is-open="opened2" min-date="dateDeparture" datepicker-options="dateOptions" close-text="Close" ng-focus="open2($event)" show-button-bar="false"
+                              ng-show="returnWay" class="form-control" />
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <legend>&nbsp;</legend>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <label>Class
+                              <select ng-model="service" ng-options="services.name for services in services" ng-required="true" class="form-control col-md-2"></select>
+                           </label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <label>Passenger:</label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <label>Adult
+                              <select name="adult" ng-model="Adult" ng-options="adult.value for adult in Adults | limitTo:limitAdult" ng-change="onChangeAdult()" class="form-control"></select>
+                           </label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <label>Child
+                              <select name="child" ng-model="Child" ng-options="child.value for child in Childs | limitTo:limitChild" ng-change="onChangeChild()" class="form-control"></select>
+                           </label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <label>Infant
+                              <select name="infant" ng-model="Infant" ng-options="infant.value for infant in Infants | limitTo:limitInfant" ng-onchange="onChangeInfant()" class="form-control"></select>
+                           </label>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td align="right">
+                           <input type="button" value="Sebelumnya" ng-click="sebelumnya()" class="btn btn-default" />
+                           <input type="submit" value="Selanjutnya" ng-click="setValueForAvailbility()" class="btn btn-info" />
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>

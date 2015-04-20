@@ -1,0 +1,99 @@
+mixin dropdown_button(type)
+  // START button group
+  .btn-group.mb-sm(dropdown='dropdown')
+    button.btn.dropdown-toggle(type='button', ng-disabled='disabled', class="btn-#{type}", dropdown-toggle="")
+      = type
+      span.caret
+    ul.dropdown-menu(role='menu')
+      li
+        a(href='#') Action
+      li
+        a(href='#') Another action
+      li
+        a(href='#') Something else here
+      li.divider
+      li
+        a(href='#') Separated link
+  // END button group
+
+mixin dropdown_split(type)
+  // START button group
+  .btn-group(dropdown='dropdown')
+    button.btn(type='button', class="btn-#{type}") Action
+    button.btn.dropdown-toggle(type='button', class="btn-#{type}", dropdown-toggle="")
+      span.caret
+      span.sr-only= type
+    ul.dropdown-menu(role='menu')
+      li
+        a(href='#') Action
+      li
+        a(href='#') Another action
+      li
+        a(href='#') Something else here
+      li.divider
+      li
+        a(href='#') Separated link
+  // END button group
+h3 Profile GOS Member
+.row
+  .col-md-12
+    // START panel
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title 
+      .panel-body
+       .table-responsive
+        table.table(width='70%' ng-repeat="gos in GOS")
+         tr
+          td(width='45%') Tourcode GOS Member  
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.username}}
+         tr
+          td(width='45%') Nama GOS Member 
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.nama}}
+         tr
+          td(width='45%') Alamat 
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.alamat}}
+         tr
+          td(width='45%') Penanggung Jawab 
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.pj}}
+         tr
+          td(width='45%') Email 
+          td(width='5%') :
+          td(width='50%'){{gos.Profile.email}}
+         tr
+          td(width='45%') Telp.
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.telp}}
+         tr
+          td(width='45%') Handphone.
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.hp}}
+         tr
+          td(width='45%') Fax
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.fax}}
+         tr
+          td(width='45%') Komisi
+          td(width='5%') :
+          td(width='50%') Domestik {{gos.Profile.komisi.domestik}} <br> Internasional {{gos.Profile.komisi.internasional}}
+         tr
+          td(width='45%') Target Penjualan
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.target}}
+         tr
+          td(width='45%') Tanggal Daftar
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.daftar}}
+         tr
+          td(width='45%') Tanggal Berlaku
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.berlaku}}
+         tr
+          td(width='45%') NPWP
+          td(width='5%') :
+          td(width='50%') {{gos.Profile.npwp}}
+    // END panel

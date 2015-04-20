@@ -1,0 +1,76 @@
+[
+  
+  {
+    "text": "Home",
+    "sref": "gos.dashboard",
+    "icon":"icon-speedometer",
+    "translate":"sidebar.nav.Home"
+  },
+  {
+    "text": "Profil GOS Member",
+    "sref": "gos.gosMemberProfile",
+    "icon" : "icon-users",
+    "translate" : "sidebar.nav.ProfileGos"
+  },
+  {
+    "text": "Book A Flight",
+    "sref": "gos.bookFlight",
+    "icon": "icon-notebook",
+    "translate":"sidebar.nav.BookFlight"
+  },
+  {
+    "text": "Test Book A Flight",
+    "sref": "gos.bfw",
+    "icon": "icon-notebook"
+  },
+  {
+    "text": "Transaction Review",
+    "sref": "gos.transactionReview",
+    "icon":"icon-check",
+    "translate":"sidebar.nav.TransactionRev"
+    
+  },
+ {
+  "text": "Manajemen Booker",
+  "sref": "gos.manajemenBooker",
+  "icon" : "icon-book-open",
+  "translate":"sidebar.nav.BookerManage"
+
+
+  },
+  {    
+   "text" : "Deposit Top Up",
+   "sref" : "gos.manajemenDTU",
+   "icon" : "icon-wallet",
+   "translate":"sidebar.nav.DTUManage"
+  },
+ {
+    "text" : "Profil Saya",
+    "sref" : "gos.myProfile",
+    "icon" : "icon-user",
+    "translate":"sidebar.nav.Profile"
+
+  },
+ {
+    "text" : "Referensi *",
+    "sref" : "#",
+    "icon" : "icon-info",
+    "translate":"sidebar.nav.Refrence"
+
+  },
+  {
+    "text" : "Refund",
+    "sref" : "#",
+    "icon" : "icon-action-undo",
+    "translate": "sidebar.nav.Refund"
+    
+
+    },
+  {
+    "text" : "Logout",
+    "sref" : "page.login",
+    "icon" : "icon-logout",
+    "translate": "sidebar.nav.Logout"
+ 
+  }
+]

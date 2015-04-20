@@ -1,0 +1,20 @@
+<html>
+<title>Coba ambil data</title>
+<div ng-controller="bookFlightController" class="body">
+   <table class="table">
+      <tr bgcolor="white">
+         <td>Kode</td>
+         <td>Nama Bandara</td>
+         <td>Nama Kota</td>
+         <td>Negara</td>
+      </tr>
+      <tr ng-repeat="Object in airports_data.airports">
+         <td>{{Object.code}}</td>
+         <td>{{Object.name}}</td>
+         <td>{{Object.cityName}}</td>
+         <td>{{Object.countryName}}</td>
+      </tr>
+   </table>
+</div>
+
+</html>

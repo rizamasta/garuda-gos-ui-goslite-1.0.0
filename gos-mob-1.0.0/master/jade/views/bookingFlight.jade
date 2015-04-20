@@ -1,0 +1,51 @@
+h3 Booking A Flight
+// START panel
+.panel.panel-default
+    .panel-heading
+    .panel-body
+        form(action='', method='POST', form-wizard="", validate-form="")
+            .form-wizard.wizard-horizontal(ng-controller='bookingFlightController_pax')
+                // START wizard steps indicator
+                ol.row
+                    li.col-sm-3(ng-click="step1()")
+                        h4 Penerbangan
+                        small.text-muted
+                    li.col-sm-3.active
+                        h4 Penumpang
+                        small.text-muted
+                    li.col-sm-3
+                        h4 Pembayaran
+                        small.text-muted
+                    li.col-sm-3
+                        h4 Konfirmasi
+                        small.text-muted
+                // END wizard steps indicator
+                .col-md-12
+                    .panel.panel-info
+                        .panel-heading
+                            strong Nama Penumpang Dewasa
+                        .panel-body
+                            //inputan nama penumbpang
+                            .col-sm-1
+                                .col-md-1 No
+                                input.col-sm-1.form-control(type="text")
+                            .col-md-2
+                                .col-md-1 Title*
+                                input.col-md-1.form-control(type="text")
+                            .col-sm-3
+                                .col-md-2 Nama&nbsp;Depan*
+                                input.col-md-1.form-control(type="text",size="10")
+                            .col-sm-2
+                                .col-md-2 Nama&nbsp;Tengah
+                                input.col-md-1.form-control(type="text", size="10")
+                            .col-sm-2
+                                .col-md-2 Nama&nbsp;Belakang
+                                input.col-md-1.form-control(type="text", size="10")
+                            .col-sm-2
+                                .col-md-2 Nomor&nbsp;GFF
+                                input.col-md-1.form-control(type="text", size="10")
+                            //inputan tanggal lahir/penumpang
+                            .col-md-6 &nbsp;
+                            .col-md-6.text-right
+                                |Tgl bln Tahun
+                        .panel-footer

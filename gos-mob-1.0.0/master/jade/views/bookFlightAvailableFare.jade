@@ -1,0 +1,113 @@
+h3 Booking A Flight
+
+// START panel
+.panel.panel-default
+  .panel-heading
+  .panel-body
+    form(action='#/gos/bookingFlight', method='POST', form-wizard="", validate-form="")
+      .form-wizard.wizard-horizontal(ng-controller='getFereController')
+        // START wizard steps indicator
+        ol.row
+          li.col-sm-3.active
+            h4 Penerbangan
+            small.text-muted
+          li.col-sm-3
+            h4 Penumpang
+            small.text-muted
+          li.col-sm-3
+            h4 Pembayaran
+            small.text-muted
+          li.col-sm-3
+            h4 Konfirmasi
+            small.text-muted
+        // END wizard steps indicator
+
+        // Step
+        div#step1
+              .col-md-12
+                  //START PANEL
+                  #panelFare.panel.panel-info
+                      .panel-heading
+                           strong KEBERANGKATAN <br>GA{{SelectionDep.3}} {{SelectionDep.1 | limitTo:3}}-{{SelectionDep.1 | limitTo:-3}}
+                           |<br>Berangkat : {{SelectionDep.5|limitTo:2}}-{{SelectionDep.5|limitTo:-5|limitTo:3}}-{{SelectionDep.8|limitTo:4}} JAM {{SelectionDep.9 | limitTo:5}}<br>
+                           |Kelas Layanan : {{serviceClass}}({{SelectionDep.4}})
+                      .panel-body
+                                  //panel Penumpang
+                                  .col-md-4
+                                      .panel.panel-default
+                                          .panel-heading
+                                              strong Penumpang:
+                                          .panel-body
+                                              P
+                                                  |{{fareAdult}}{{" orang Dewasa"}}
+                                              p(ng-show="showChild")
+                                                  |{{fareChild}}{{" orang Anak-Anak"}}
+                                              p(ng-show="showInfant")
+                                                  |{{fareInfant}}{{" orang Bayi"}}
+                                              p <hr>
+                                                strong
+                                                  p.text-left Total Harga : {{resultFare.paxpay | currency:""}} {{resultFare.coc}}
+                                  //panel Ticket Fare
+                                  .col-md-8
+                                      .panel.panel-default
+                                          .panel-heading
+                                              legend
+                                              strong TICKET FARE
+                                          .panel-body
+                                              div(ng-class="col-md-12")
+                                                   .col-md-8 Exchange Rate
+                                                   .col-md-4.text-right {{resultFare.coc}} 1 = {{resultFare.loc}} {{resultFare.bsr}}
+                                                   .col-md-8 Harga Dasar Dewasa
+                                                   .col-md-4.text-right {{resultFare.bfareade | currency:"":0}}
+                                                   div(ng-repeat="taxa in taxad",ng-class="col-md-12")
+                                                     .col-md-8 {{taxa.id}}
+                                                     .col-md-4.text-right {{taxa.value | currency:""}}
+                                                   .col-md-12
+                                                      legend
+                                                   .col-md-8 Harga Dewasa
+                                                   .col-md-4.text-right {{resultFare.paxpayade | currency:""}}
+                                                   .col-md-8 Jumlah Pax Dewasa
+                                                   .col-md-4.text-right {{fareAdult}} X
+                                                   .col-md-8 Total Harga Dewasa
+                                                   .col-md-4.text-right {{resultFare.paxpayad_all | currency:""}}<br><br>
+                                              div(ng-class="col-md-12", ng-show="showChild")
+                                                   .col-md-8 Harga Dasar Anak
+                                                   .col-md-4.text-right {{resultFare.bfareche | currency:"":0}}
+                                                   div(ng-repeat="taxc in taxch",ng-class="col-md-12")
+                                                     .col-md-8 {{taxc.id}}
+                                                     .col-md-4.text-right {{taxc.value | currency:""}}
+                                                   .col-md-12
+                                                      legend
+                                                   .col-md-8 Harga Anak
+                                                   .col-md-4.text-right {{resultFare.paxpayche | currency:""}}
+                                                   .col-md-8 Jumlah Pax Anak
+                                                   .col-md-4.text-right {{fareChild}} X
+                                                   .col-md-8 Total Harga Anak
+                                                   .col-md-4.text-right {{resultFare.paxpaych_all | currency:""}}<br><br>
+                                              div(ng-class="col-md-12", ng-show="showInfant")
+                                                  .col-md-8 Harga Dasar Bayi
+                                                  .col-md-4.text-right {{resultFare.bfarei | currency:"":0}}
+                                                  div(ng-repeat="taxi in taxin",ng-class="col-md-12")
+                                                      .col-md-8 {{taxi.id}}
+                                                      .col-md-4.text-right {{taxi.value | currency:""}}
+                                                  .col-md-12
+                                                      legend
+                                                  .col-md-8 Harga Bayi
+                                                  .col-md-4.text-right {{resultFare.paxpayine | currency:""}}
+                                                  .col-md-8 Jumlah Pax Bayi
+                                                  .col-md-4.text-right {{fareInfant}} X
+                                                  .col-md-8 Total Harga Bayi
+                                                  .col-md-4.text-right {{resultFare.paxpayin_all | currency:""}}<br><br>
+                                              div(ng-class="col-md-12")
+                                                  .col-md-8 Total Bayar Pax
+                                                  .col-md-4.text-right  {{resultFare.paxpay | currency:""}}
+                                                  .col-md-8 Komisi Agen
+                                                  .col-md-4.text-right  {{resultFare.agentkom | currency:""}}
+                                                  .col-md-8 PPH
+                                                  .col-md-4.text-right  {{resultFare.agentpph | currency:""}}
+                                                  .col-md-8 Total Bayar Agen
+                                                  .col-md-4.text-right  {{resultFare.agentpay | currency:""}}
+                      .panel-footer
+                              p.text-center
+                                input.btn.btn(type="button", value="Sebelumnya", ng-click="sebelumnya()")
+                                input.btn.btn-info(type="submit", value="Selanjutnya", ng-click="getFare()")
